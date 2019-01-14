@@ -1,14 +1,25 @@
 pipeline {
     agent any
     stages { 
-	    
-        stage('Building stage') { 
-            steps {
-               echo 'Building Task'
-               bat '''
-               cd D:\\7. IDES\\Eclipse\\eclipse-workspace\\StudentAttendance\\src\\
-		       javac -cp "D:\\7. IDES\\Eclipse\\eclipse-workspace\\StudentAttendance\\lib\\junit-4.12.jar";"D:\\7. IDES\\Eclipse\\eclipse-workspace\\StudentAttendance\\lib\\hamcrest-core-1.3.jar";. "D:\\7. IDES\\Eclipse\\eclipse-workspace\\StudentAttendance\\src\\Student.java" "studentTest.java"
-		        '''        
+    
+    stage('Fetch') {
+      
+       steps {
+           echo 'Fetching from repo'
+           bat '''
+           git  'https://github.com/Cathalb28345/studentAttendance.git'
+  
+		   '''        
+            }
+    }
+    
+	   stage('Building stage') { 
+         steps {
+           echo 'Building Task'
+           bat '''
+           cd D:\\7. IDES\\Eclipse\\eclipse-workspace\\StudentAttendance\\src\\
+           javac -cp "D:\\7. IDES\\Eclipse\\eclipse-workspace\\StudentAttendance\\lib\\junit-4.12.jar";"D:\\7. IDES\\Eclipse\\eclipse-workspace\\StudentAttendance\\lib\\hamcrest-core-1.3.jar";. "D:\\7. IDES\\Eclipse\\eclipse-workspace\\StudentAttendance\\src\\Student.java" "studentTest.java"
+		   '''        
             }
         }
         
